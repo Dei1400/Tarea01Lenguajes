@@ -2,9 +2,13 @@
 # Tarea 1 – Aplicación Web: Batalla de Palabras
 
 **Curso:** Lenguajes de Programación
+
 **Semestre:** II, 2026
+
 **Institución:** Instituto Tecnológico de Costa Rica
+
 **Estudiante:** [Deilyn Salazar]
+
 **Carnet:** [2020426180]
 
 ## Descripción
