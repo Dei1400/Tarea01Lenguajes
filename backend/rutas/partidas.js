@@ -1,51 +1,134 @@
-// todas las rutas relacionadas con partidas van en este archivo
 const express = require("express");
 const crypto = require("crypto");
 const router = express.Router();
 const juego = require("../logica/juego");
 const estado = require("../datos/estado");
+// para crear una nueva ronda, se necesita el numero de ronda, el jugador que adivina y el jugador que escribe
+
+function crearRonda(numero, jugadorQueAdivina, jugadorQueEscribe) {
+  return { numero, jugadorQueAdivina, jugadorQueEscribe,
+    palabraSecreta: null,
+    intentos: [],
+    intentosTotales: 0,
+    tiempoSegundos: 0,
+    completada: false,
+  };
+}
 
 router.post("/", (req, res) => {
-  // leer nombreJugadorA y nombreJugadorB de req.body
-  // si falta alguno, responder error 400
-  // usar juego.sortearJugadores para decidir jugador1 y jugador2
-  // armar el objeto partida (id con crypto.randomUUID(), jugador1, jugador2, rondas con la primera ronda, estado "en_curso")
-  // guardarla con estado.agregarPartida
-  // responder con el id de la partida y de quien es el turno
+  const { nombreJugadorA, nombreJugadorB } = req.body;
+  if (!nombreJugadorA || !nombreJugadorB) {
+    return res.status(400).json({ error: "Faltan los nombres de los dos jugadores." });
+  }
+
+  const { jugador1, jugador2 } = juego.sortearJugadores(nombreJugadorA, nombreJugadorB);
+
+  const partida = {
+    id: crypto.randomUUID(),
+    jugador1,
+    jugador2,
+    rondas: [crearRonda(1, jugador1, jugador2)],
+    estado: "en_curso",
+    ganador: null,
+    fechaHora: new Date().toISOString(),
+  };
+
+  estado.agregarPartida(partida);
+
+  res.json({
+    id: partida.id,
+    turno: "escribir_palabra",
+    jugadorQueEscribe: partida.rondas[0].jugadorQueEscribe,
+  });
 });
 
 router.get("/:id", (req, res) => {
-  // buscar la partida con estado.buscarPartida(req.params.id)
-  // si no existe, responder 404
-  // si existe, responderla completa
+  const partida = estado.buscarPartida(req.params.id);
+  if (!partida) return res.status(404).json({ error: "Partida no encontrada." });
+  res.json(partida);
 });
 
 router.post("/:id/palabra", (req, res) => {
-  // buscar la partida y tomar la ultima ronda del arreglo de rondas
-  // validar la palabra con juego.validarPalabra
-  // si es valida, guardarla en la ronda y guardar el momento de inicio (Date.now())
-  // responder el largo de la palabra y de quien es el turno de adivinar
+  const partida = estado.buscarPartida(req.params.id);
+  if (!partida) return res.status(404).json({ error: "Partida no encontrada." });
+
+  const ronda = partida.rondas[partida.rondas.length - 1];
+  if (ronda.palabraSecreta) {
+    return res.status(400).json({ error: "Esta ronda ya tiene palabra secreta." });
+  }
+
+  const resultado = juego.validarPalabra(req.body.palabra);
+  if (!resultado.valido) return res.status(400).json({ error: resultado.error });
+
+  ronda.palabraSecreta = resultado.palabra;
+  ronda.inicioMs = Date.now();
+
+  res.json({
+    largoPalabra: resultado.palabra.length,
+    turno: "adivinar",
+    jugadorQueAdivina: ronda.jugadorQueAdivina,
+  });
 });
 
 router.post("/:id/intento", (req, res) => {
-  // buscar la partida y la ronda actual
-  // validar que ya haya palabra secreta y que la ronda no este completada
-  // validar que el intento tenga el mismo largo que la palabra secreta
-  // usar juego.compararIntento para obtener pistas y si acerto
-  // guardar el intento en la ronda y sumar 1 a intentosTotales
-  // si acerto, marcar la ronda como completada y calcular el tiempo usado
-  // responder las pistas y si acerto
+  const partida = estado.buscarPartida(req.params.id);
+  if (!partida) return res.status(404).json({ error: "Partida no encontrada." });
+
+  const ronda = partida.rondas[partida.rondas.length - 1];
+  if (!ronda.palabraSecreta) {
+    return res.status(400).json({ error: "Todavia no se definio la palabra secreta de esta ronda." });
+  }
+  if (ronda.completada) {
+    return res.status(400).json({ error: "Esta ronda ya termino." });
+  }
+
+  const { intento } = req.body;
+  if (!intento || intento.length !== ronda.palabraSecreta.length) {
+    return res.status(400).json({ error: `El intento debe tener ${ronda.palabraSecreta.length} caracteres.` });
+  }
+
+  const { pistas, acerto } = juego.compararIntento(intento, ronda.palabraSecreta);
+
+  ronda.intentos.push({ texto: intento, pistas, timestamp: new Date().toISOString() });
+  ronda.intentosTotales += 1;
+
+  if (acerto) {
+    ronda.completada = true;
+    ronda.tiempoSegundos = Math.round((Date.now() - ronda.inicioMs) / 1000);
+  }
+
+  res.json({ pistas, acerto, intentosUsados: ronda.intentosTotales });
 });
 
 router.post("/:id/siguiente-ronda", (req, res) => {
-  // buscar la partida y la ronda actual
-  // si la ronda actual no esta completada, responder error
-  // si ya van 6 rondas, calcular ganador con juego.calcularGanador, marcar partida finalizada y responder resumen
-  // si no, crear la siguiente ronda alternando quien adivina y quien escribe
+  const partida = estado.buscarPartida(req.params.id);
+  if (!partida) return res.status(404).json({ error: "Partida no encontrada." });
+
+  const ronda = partida.rondas[partida.rondas.length - 1];
+  if (!ronda.completada) {
+    return res.status(400).json({ error: "La ronda actual todavia no termino." });
+  }
+
+  if (partida.rondas.length >= 6) {
+    const resultado = juego.calcularGanador(partida);
+    partida.estado = "finalizada";
+    partida.ganador = resultado.ganador;
+    partida.empate = resultado.empate;
+    return res.json({ finDePartida: true, resumen: partida });
+  }
+
+  const nuevaRonda = crearRonda(partida.rondas.length + 1, ronda.jugadorQueEscribe, ronda.jugadorQueAdivina);
+  partida.rondas.push(nuevaRonda);
+
+  res.json({
+    finDePartida: false,
+    turno: "escribir_palabra",
+    jugadorQueEscribe: nuevaRonda.jugadorQueEscribe,
+  });
 });
 
 router.get("/", (req, res) => {
-  // responder con estado.listarPartidas()
+  res.json(estado.listarPartidas());
 });
 
-module.exports = router; // para exportar el router y poder usarlo en otros archivos
+module.exports = router;
