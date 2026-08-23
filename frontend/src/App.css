@@ -120,3 +120,62 @@ button:hover {
   gap: 12px;
   align-items: center;
 }
+.etiqueta-turno {
+  background-color: #d46a94;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 14px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.etiqueta-turno p {
+  margin: 4px 0;
+}
+
+.celda-actual {
+  background-color: white;
+  border: 2px solid #e0b8c8;
+  color: #7a3b57;
+}
+
+.teclado {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.fila-teclado {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.tecla {
+  width: 40px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background-color: #f3d9e3;
+  color: #7a3b57;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.tecla:hover {
+  background-color: #e8b9cd;
+}
+
+.tecla-especial {
+  width: 60px;
+  background-color: #d46a94;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.tecla-especial:hover {
+  background-color: #b8547c;
+}
