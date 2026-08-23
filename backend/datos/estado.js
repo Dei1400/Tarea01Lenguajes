@@ -6,7 +6,7 @@ function agregarPartida(partida) {
 }
 
 function buscarPartida(id) {
-  // devolver la partida cuyo campo "id" sea igual al parametro "id"
+  // para buscar una partida por su id
   return partidas.find((p) => p.id === id);
 }
 

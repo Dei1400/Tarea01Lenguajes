@@ -1,3 +1,7 @@
+// express router para manejar las rutas relacionadas con las partidas
+// crypto para generar ids unicos de partidas
+///router para manejar las rutas relacionadas con las partidas
+//todos estos son los metodos que se van a usar para manejar las partidas
 const express = require("express");
 const crypto = require("crypto");
 const router = express.Router();
@@ -5,7 +9,8 @@ const juego = require("../logica/juego");
 const estado = require("../datos/estado");
 // para crear una nueva ronda, se necesita el numero de ronda, el jugador que adivina y el jugador que escribe
 
-function crearRonda(numero, jugadorQueAdivina, jugadorQueEscribe) {
+function crearRonda(numero, jugadorQueAdivina, jugadorQueEscribe) { 
+  //para crear una nueva ronda se devulve un objeto  con numero, jugadorQueAdivina, jugadorQueEscribe, palabraSecreta, intentos, intentosTotales, tiempoSegundos y completada
   return { numero, jugadorQueAdivina, jugadorQueEscribe,
     palabraSecreta: null,
     intentos: [],
