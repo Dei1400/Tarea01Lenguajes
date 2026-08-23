@@ -1,122 +1,191 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react";
+import Inicio from "./componentes/Inicio";
+import "./App.css";
+
+const API_URL = "http://localhost:5000/api/partidas";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pantalla, setPantalla] = useState("inicio");
+  const [nombreA, setNombreA] = useState("");
+  const [nombreB, setNombreB] = useState("");
+  const [partidaId, setPartidaId] = useState(null);
+  const [jugadorQueEscribe, setJugadorQueEscribe] = useState("");
+  const [jugadorQueAdivina, setJugadorQueAdivina] = useState("");
+  const [largoPalabra, setLargoPalabra] = useState(0);
+  const [palabraInput, setPalabraInput] = useState("");
+  const [intentoInput, setIntentoInput] = useState("");
+  const [pistas, setPistas] = useState([]);
+  const [error, setError] = useState("");
+  const [resumen, setResumen] = useState(null);
+  const [historial, setHistorial] = useState([]);
+
+  async function iniciarPartida() {
+    setError("");
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ nombreJugadorA: nombreA, nombreJugadorB: nombreB }),
+    });
+    const datos = await res.json();
+    if (res.status !== 200) {
+      setError(datos.error);
+      return;
+    }
+    setPartidaId(datos.id);
+    setJugadorQueEscribe(datos.jugadorQueEscribe);
+    setPantalla("escribirPalabra");
+  }
+
+  async function enviarPalabra() {
+    setError("");
+    const res = await fetch(`${API_URL}/${partidaId}/palabra`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ palabra: palabraInput }),
+    });
+    const datos = await res.json();
+    if (res.status !== 200) {
+      setError(datos.error);
+      return;
+    }
+    setLargoPalabra(datos.largoPalabra);
+    setJugadorQueAdivina(datos.jugadorQueAdivina);
+    setPalabraInput("");
+    setPistas([]);
+    setPantalla("adivinar");
+  }
+
+  async function enviarIntento() {
+    setError("");
+    const res = await fetch(`${API_URL}/${partidaId}/intento`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ intento: intentoInput }),
+    });
+    const datos = await res.json();
+    if (res.status !== 200) {
+      setError(datos.error);
+      return;
+    }
+    setIntentoInput("");
+    if (datos.acerto) {
+      setPistas([]);
+      await avanzarRonda();
+    } else {
+      setPistas(datos.pistas);
+    }
+  }
+
+  async function avanzarRonda() {
+    const res = await fetch(`${API_URL}/${partidaId}/siguiente-ronda`, { method: "POST" });
+    const datos = await res.json();
+    if (datos.finDePartida) {
+      setResumen(datos.resumen);
+      setPantalla("resumen");
+    } else {
+      setJugadorQueEscribe(datos.jugadorQueEscribe);
+      setPantalla("escribirPalabra");
+    }
+  }
+
+  async function verHistorial() {
+    const res = await fetch(API_URL);
+    const datos = await res.json();
+    setHistorial(datos);
+    setPantalla("historial");
+  }
+
+  function reiniciar() {
+    setPantalla("inicio");
+    setNombreA("");
+    setNombreB("");
+    setPartidaId(null);
+    setResumen(null);
+    setError("");
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+    <div className="app">
+      {pantalla === "inicio" && (
+        <Inicio
+          nombreA={nombreA}
+          setNombreA={setNombreA}
+          nombreB={nombreB}
+          setNombreB={setNombreB}
+          onIniciar={iniciarPartida}
+          onVerHistorial={verHistorial}
+          error={error}
+        />
+      )}
+
+      {pantalla === "escribirPalabra" && (
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+          <h1>Batalla de Palabras</h1>
+          {error && <p className="error">{error}</p>}
+          <p>Turno de escribir la palabra: <strong>{jugadorQueEscribe}</strong></p>
+          <p>(el otro jugador no debe mirar)</p>
+          <input
+            type="password"
+            placeholder="Palabra secreta (4-8 letras)"
+            value={palabraInput}
+            onChange={(e) => setPalabraInput(e.target.value)}
+          />
+          <button onClick={enviarPalabra}>Confirmar palabra</button>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      )}
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
+      {pantalla === "adivinar" && (
+        <div>
+          <h1>Batalla de Palabras</h1>
+          {error && <p className="error">{error}</p>}
+          <p>Turno de adivinar: <strong>{jugadorQueAdivina}</strong></p>
+          <p>La palabra tiene {largoPalabra} caracteres.</p>
+          <input
+            placeholder="Tu intento"
+            value={intentoInput}
+            onChange={(e) => setIntentoInput(e.target.value)}
+          />
+          <button onClick={enviarIntento}>Enviar intento</button>
           <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
+            {pistas.map((p) => (
+              <li key={p.posicion}>
+                Posicion {p.posicion}: {p.correcta ? "correcta" : "incorrecta"}
+              </li>
+            ))}
           </ul>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {pantalla === "resumen" && resumen && (
+        <div>
+          <h2>Fin de la partida</h2>
+          <p>Ganador: {resumen.ganador || "Empate"}</p>
+          <ul>
+            {resumen.rondas.map((r) => (
+              <li key={r.numero}>
+                Ronda {r.numero} - {r.jugadorQueAdivina}: {r.intentosTotales} intentos, {r.tiempoSegundos}s
+              </li>
+            ))}
+          </ul>
+          <button onClick={reiniciar}>Jugar de nuevo</button>
+        </div>
+      )}
+
+      {pantalla === "historial" && (
+        <div>
+          <h2>Historial de partidas</h2>
+          <ul>
+            {historial.map((p) => (
+              <li key={p.id}>
+                {p.jugador1} vs {p.jugador2} - Ganador: {p.ganador || "Empate"}
+              </li>
+            ))}
+          </ul>
+          <button onClick={reiniciar}>Volver</button>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
