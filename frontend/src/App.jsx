@@ -126,8 +126,10 @@ function App() {
       {pantalla === "escribirPalabra" && (
         <div>
           <h1>Batalla de Palabras</h1>
-          <p>Turno de escribir la palabra: <strong>{jugadorQueEscribe}</strong></p>
-          <p>(el otro jugador no debe mirar)</p>
+          <div className="etiqueta-turno">
+            <p>Turno de escribir la palabra: <strong>{jugadorQueEscribe}</strong></p>
+            <p>(el otro jugador no debe mirar)</p>
+          </div>
           {error && <p className="error">{error}</p>}
           <input
             className="input-palabra"
