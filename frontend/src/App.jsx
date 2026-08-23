@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Inicio from "./componentes/Inicio";
 import "./App.css";
+import Adivinar from "./componentes/Adivinar";
 
 const API_URL = "http://localhost:5000/api/partidas";
 
 function App() {
+
   const [pantalla, setPantalla] = useState("inicio");
   const [nombreA, setNombreA] = useState("");
   const [nombreB, setNombreB] = useState("");
@@ -18,6 +20,7 @@ function App() {
   const [error, setError] = useState("");
   const [resumen, setResumen] = useState(null);
   const [historial, setHistorial] = useState([]);
+  const [intentosHistorial, setIntentosHistorial] = useState([]);
 
   async function iniciarPartida() {
     setError("");
@@ -52,6 +55,7 @@ function App() {
     setJugadorQueAdivina(datos.jugadorQueAdivina);
     setPalabraInput("");
     setPistas([]);
+    setIntentosHistorial([]);
     setPantalla("adivinar");
   }
 
@@ -73,6 +77,7 @@ function App() {
       await avanzarRonda();
     } else {
       setPistas(datos.pistas);
+      setIntentosHistorial((prev) => [...prev, { texto: intentoInput, pistas: datos.pistas }]);
     }
   }
 
@@ -121,11 +126,11 @@ function App() {
       {pantalla === "escribirPalabra" && (
         <div>
           <h1>Batalla de Palabras</h1>
-          {error && <p className="error">{error}</p>}
           <p>Turno de escribir la palabra: <strong>{jugadorQueEscribe}</strong></p>
           <p>(el otro jugador no debe mirar)</p>
+          {error && <p className="error">{error}</p>}
           <input
-            type="password"
+            className="input-palabra"
             placeholder="Palabra secreta (4-8 letras)"
             value={palabraInput}
             onChange={(e) => setPalabraInput(e.target.value)}
@@ -135,25 +140,15 @@ function App() {
       )}
 
       {pantalla === "adivinar" && (
-        <div>
-          <h1>Batalla de Palabras</h1>
-          {error && <p className="error">{error}</p>}
-          <p>Turno de adivinar: <strong>{jugadorQueAdivina}</strong></p>
-          <p>La palabra tiene {largoPalabra} caracteres.</p>
-          <input
-            placeholder="Tu intento"
-            value={intentoInput}
-            onChange={(e) => setIntentoInput(e.target.value)}
-          />
-          <button onClick={enviarIntento}>Enviar intento</button>
-          <ul>
-            {pistas.map((p) => (
-              <li key={p.posicion}>
-                Posicion {p.posicion}: {p.correcta ? "correcta" : "incorrecta"}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Adivinar
+          jugadorQueAdivina={jugadorQueAdivina}
+          largoPalabra={largoPalabra}
+          intentoInput={intentoInput}
+          setIntentoInput={setIntentoInput}
+          onEnviarIntento={enviarIntento}
+          intentosHistorial={intentosHistorial}
+          error={error}
+        />
       )}
 
       {pantalla === "resumen" && resumen && (

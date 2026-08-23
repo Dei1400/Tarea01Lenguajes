@@ -74,3 +74,49 @@ button:hover {
   color: #c0392b;
   font-weight: 600;
 }
+.pantalla-adivinar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.grid-adivinanza {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.fila-intento {
+  display: flex;
+  gap: 8px;
+}
+
+.celda {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-radius: 8px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.celda.correcta {
+  background-color: #d46a94;
+}
+
+.celda.incorrecta {
+  background-color: #d9c3cd;
+  color: #7a5c68;
+}
+
+.fila-input {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
