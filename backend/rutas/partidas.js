@@ -26,6 +26,10 @@ router.post("/", (req, res) => {
     return res.status(400).json({ error: "Faltan los nombres de los dos jugadores." });
   }
 
+  if (nombreJugadorA.trim().toLowerCase() === nombreJugadorB.trim().toLowerCase()) {
+    return res.status(400).json({ error: "Los dos jugadores deben tener nombres distintos." });
+  }
+
   const { jugador1, jugador2 } = juego.sortearJugadores(nombreJugadorA, nombreJugadorB);
 
   const partida = {
@@ -66,7 +70,7 @@ router.post("/:id/palabra", (req, res) => {
   if (!resultado.valido) return res.status(400).json({ error: resultado.error });
 
   ronda.palabraSecreta = resultado.palabra;
-  ronda.inicioMs = Date.now();
+  ronda.inicioMs = Date.now(); //para calcular el tiempo que tarda el jugador en adivinar la palabra, se guarda el timestamp de inicio de la ronda
 
   res.json({
     largoPalabra: resultado.palabra.length,
@@ -133,6 +137,7 @@ router.post("/:id/siguiente-ronda", (req, res) => {
 });
 
 router.get("/", (req, res) => {
+  const finalizadas = estado.listarPartidas().filter((p) => p.estado === "finalizada"); //para filtrar las partidas finalizadas
   res.json(estado.listarPartidas());
 });
 
