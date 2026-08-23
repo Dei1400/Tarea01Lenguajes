@@ -71,6 +71,7 @@ router.post("/:id/palabra", (req, res) => {
 
   ronda.palabraSecreta = resultado.palabra;
   ronda.inicioMs = Date.now(); //para calcular el tiempo que tarda el jugador en adivinar la palabra, se guarda el timestamp de inicio de la ronda
+  estado.guardarPartidas();
 
   res.json({
     largoPalabra: resultado.palabra.length,
@@ -105,6 +106,7 @@ router.post("/:id/intento", (req, res) => {
     ronda.completada = true;
     ronda.tiempoSegundos = Math.round((Date.now() - ronda.inicioMs) / 1000);
   }
+  estado.guardarPartidas();
 
   res.json({ pistas, acerto, intentosUsados: ronda.intentosTotales });
 });
@@ -123,6 +125,7 @@ router.post("/:id/siguiente-ronda", (req, res) => {
     partida.estado = "finalizada";
     partida.ganador = resultado.ganador;
     partida.empate = resultado.empate;
+    estado.guardarPartidas();
     return res.json({ finDePartida: true, resumen: partida });
   }
 
@@ -134,11 +137,12 @@ router.post("/:id/siguiente-ronda", (req, res) => {
     turno: "escribir_palabra",
     jugadorQueEscribe: nuevaRonda.jugadorQueEscribe,
   });
+  estado.guardarPartidas();
 });
 
 router.get("/", (req, res) => {
   const finalizadas = estado.listarPartidas().filter((p) => p.estado === "finalizada"); //para filtrar las partidas finalizadas
-  res.json(estado.listarPartidas());
+  res.json(finalizadas);
 });
 
 module.exports = router;

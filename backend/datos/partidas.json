@@ -1,0 +1,658 @@
+[
+  {
+    "id": "dd901c3d-81b7-409f-99c9-a313a9fbbdd6",
+    "jugador1": "pao",
+    "jugador2": "dei",
+    "rondas": [
+      {
+        "numero": 1,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "dei",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:01.155Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 3,
+        "completada": true,
+        "inicioMs": 1787526538197
+      },
+      {
+        "numero": 2,
+        "jugadorQueAdivina": "dei",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "perro",
+        "intentos": [
+          {
+            "texto": "PERRR",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              },
+              {
+                "posicion": 5,
+                "correcta": false
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:14.869Z"
+          },
+          {
+            "texto": "PEERO",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              },
+              {
+                "posicion": 5,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:18.380Z"
+          },
+          {
+            "texto": "PPERR",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              },
+              {
+                "posicion": 5,
+                "correcta": false
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:21.898Z"
+          },
+          {
+            "texto": "PPREO",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": false
+              },
+              {
+                "posicion": 5,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:25.316Z"
+          },
+          {
+            "texto": "PERRO",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              },
+              {
+                "posicion": 5,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:28.654Z"
+          }
+        ],
+        "intentosTotales": 5,
+        "tiempoSegundos": 18,
+        "completada": true,
+        "inicioMs": 1787526550854
+      },
+      {
+        "numero": 3,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "dei",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:37.387Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787526575095
+      },
+      {
+        "numero": 4,
+        "jugadorQueAdivina": "dei",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "ASAD",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": false
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": false
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:44.546Z"
+          },
+          {
+            "texto": "ASAA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": false
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:48.722Z"
+          },
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:51.230Z"
+          }
+        ],
+        "intentosTotales": 3,
+        "tiempoSegundos": 11,
+        "completada": true,
+        "inicioMs": 1787526580648
+      },
+      {
+        "numero": 5,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "dei",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:09:56.690Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787526594537
+      },
+      {
+        "numero": 6,
+        "jugadorQueAdivina": "dei",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:01.964Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787526599686
+      }
+    ],
+    "estado": "finalizada",
+    "ganador": "pao",
+    "fechaHora": "2026-08-23T23:08:53.714Z",
+    "empate": false
+  },
+  {
+    "id": "63acc205-a094-4e5c-8e35-7207bfb4fa75",
+    "jugador1": "pao",
+    "jugador2": "jos",
+    "rondas": [
+      {
+        "numero": 1,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "jos",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:22.479Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 3,
+        "completada": true,
+        "inicioMs": 1787526619739
+      },
+      {
+        "numero": 2,
+        "jugadorQueAdivina": "jos",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "perro",
+        "intentos": [
+          {
+            "texto": "PEERO",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              },
+              {
+                "posicion": 5,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:33.061Z"
+          },
+          {
+            "texto": "PERRO",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              },
+              {
+                "posicion": 5,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:36.162Z"
+          }
+        ],
+        "intentosTotales": 2,
+        "tiempoSegundos": 7,
+        "completada": true,
+        "inicioMs": 1787526629007
+      },
+      {
+        "numero": 3,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "jos",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "ASAS",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": false
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": false
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:41.771Z"
+          },
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:44.479Z"
+          }
+        ],
+        "intentosTotales": 2,
+        "tiempoSegundos": 6,
+        "completada": true,
+        "inicioMs": 1787526638928
+      },
+      {
+        "numero": 4,
+        "jugadorQueAdivina": "jos",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "caso",
+        "intentos": [
+          {
+            "texto": "CASO",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:52.738Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 3,
+        "completada": true,
+        "inicioMs": 1787526649911
+      },
+      {
+        "numero": 5,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "jos",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:10:57.414Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787526655430
+      },
+      {
+        "numero": 6,
+        "jugadorQueAdivina": "jos",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "ACSA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": false
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:11:04.210Z"
+          },
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:11:06.864Z"
+          }
+        ],
+        "intentosTotales": 2,
+        "tiempoSegundos": 6,
+        "completada": true,
+        "inicioMs": 1787526660466
+      }
+    ],
+    "estado": "finalizada",
+    "ganador": "pao",
+    "fechaHora": "2026-08-23T23:10:17.652Z",
+    "empate": false
+  }
+]
