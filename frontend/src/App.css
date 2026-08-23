@@ -114,12 +114,6 @@ button:hover {
   background-color: #d9c3cd;
   color: #7a5c68;
 }
-
-.fila-input {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
 .etiqueta-turno {
   background-color: #d46a94;
   color: white;
@@ -242,32 +236,6 @@ h1, h2 {
   margin: 0;
 }
 
-.lista-rondas {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  max-width: 420px;
-}
-
-.fila-ronda {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  border: 2px solid #e0b8c8;
-  border-radius: 10px;
-  padding: 12px 18px;
-}
-
-.ronda-numero {
-  font-weight: 700;
-  color: #7a3b57;
-}
-
-.ronda-detalle {
-  color: #555;
-}
 .pantalla-historial {
   display: flex;
   flex-direction: column;
