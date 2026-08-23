@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import Inicio from "./componentes/Inicio";
 import "./App.css";
 import Adivinar from "./componentes/Adivinar";
@@ -26,6 +26,7 @@ function App() {
   const [historial, setHistorial] = useState([]);
   const [intentosHistorial, setIntentosHistorial] = useState([]);
   const [rondaGanada, setRondaGanada] = useState(false);
+  const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
 
   async function iniciarPartida() {
     setError("");
@@ -62,6 +63,7 @@ function App() {
     setPistas([]);
     setIntentosHistorial([]);
     setRondaGanada(false);
+    setTiempoTranscurrido(0);
     setPantalla("adivinar");
   }
 
@@ -115,6 +117,13 @@ function App() {
     setResumen(null);
     setError("");
   }
+  useEffect(() => {
+    if (pantalla !== "adivinar" || rondaGanada) return;
+    const intervalo = setInterval(() => {
+      setTiempoTranscurrido((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(intervalo);
+  }, [pantalla, rondaGanada]);
 
   return (
     <div className="app">
@@ -160,6 +169,7 @@ function App() {
           error={error}
           rondaGanada={rondaGanada}
           onSiguienteRonda={avanzarRonda}
+          tiempoTranscurrido={tiempoTranscurrido}
         />
       )}
       {pantalla === "resumen" && resumen && (

@@ -9,6 +9,7 @@ function Adivinar({
   error,
   rondaGanada,
   onSiguienteRonda,
+  tiempoTranscurrido,
 }) {
   function agregarLetra(letra) {
     if (intentoInput.length < largoPalabra) {
@@ -33,6 +34,7 @@ function Adivinar({
       <div className="etiqueta-turno">
         <p>Turno de adivinar: <strong>{jugadorQueAdivina}</strong></p>
         <p>La palabra tiene {largoPalabra} caracteres.</p>
+        <p>Tiempo: {tiempoTranscurrido}s</p>
       </div>
 
       {error && <p className="error">{error}</p>}

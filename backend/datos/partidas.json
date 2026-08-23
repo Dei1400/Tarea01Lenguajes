@@ -654,5 +654,264 @@
     "ganador": "pao",
     "fechaHora": "2026-08-23T23:10:17.652Z",
     "empate": false
+  },
+  {
+    "id": "fd17e064-216f-4834-a130-5feb2a04bafb",
+    "jugador1": "pao",
+    "jugador2": "mary",
+    "rondas": [
+      {
+        "numero": 1,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "mary",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:39:35.683Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 8,
+        "completada": true,
+        "inicioMs": 1787528367219
+      },
+      {
+        "numero": 2,
+        "jugadorQueAdivina": "mary",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:39:40.684Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787528378733
+      },
+      {
+        "numero": 3,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "mary",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "ACSA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": false
+              },
+              {
+                "posicion": 2,
+                "correcta": false
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:39:46.113Z"
+          },
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:39:49.311Z"
+          }
+        ],
+        "intentosTotales": 2,
+        "tiempoSegundos": 6,
+        "completada": true,
+        "inicioMs": 1787528383197
+      },
+      {
+        "numero": 4,
+        "jugadorQueAdivina": "mary",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CAAA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": false
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:39:57.003Z"
+          },
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:39:58.995Z"
+          }
+        ],
+        "intentosTotales": 2,
+        "tiempoSegundos": 7,
+        "completada": true,
+        "inicioMs": 1787528392316
+      },
+      {
+        "numero": 5,
+        "jugadorQueAdivina": "pao",
+        "jugadorQueEscribe": "mary",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:40:03.771Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787528401718
+      },
+      {
+        "numero": 6,
+        "jugadorQueAdivina": "mary",
+        "jugadorQueEscribe": "pao",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-23T23:40:08.867Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787528406819
+      }
+    ],
+    "estado": "finalizada",
+    "ganador": "mary",
+    "fechaHora": "2026-08-23T23:39:21.914Z",
+    "empate": false
   }
 ]
