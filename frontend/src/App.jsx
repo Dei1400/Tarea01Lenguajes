@@ -2,6 +2,10 @@ import { useState } from "react";
 import Inicio from "./componentes/Inicio";
 import "./App.css";
 import Adivinar from "./componentes/Adivinar";
+import mascotaNoVer from "./assets/no-ver.png";
+import mascotaFin from "./assets/fin.png";
+
+
 
 const API_URL = "http://localhost:5000/api/partidas";
 
@@ -21,6 +25,7 @@ function App() {
   const [resumen, setResumen] = useState(null);
   const [historial, setHistorial] = useState([]);
   const [intentosHistorial, setIntentosHistorial] = useState([]);
+  const [rondaGanada, setRondaGanada] = useState(false);
 
   async function iniciarPartida() {
     setError("");
@@ -56,6 +61,7 @@ function App() {
     setPalabraInput("");
     setPistas([]);
     setIntentosHistorial([]);
+    setRondaGanada(false);
     setPantalla("adivinar");
   }
 
@@ -72,13 +78,14 @@ function App() {
       return;
     }
     setIntentoInput("");
+    setIntentosHistorial((prev) => [...prev, { texto: intentoInput, pistas: datos.pistas }]);
     if (datos.acerto) {
       setPistas([]);
-      await avanzarRonda();
+      setRondaGanada(true); //boton para avanzar a la siguiente ronda
     } else {
       setPistas(datos.pistas);
-      setIntentosHistorial((prev) => [...prev, { texto: intentoInput, pistas: datos.pistas }]);
     }
+
   }
 
   async function avanzarRonda() {
@@ -123,8 +130,9 @@ function App() {
         />
       )}
 
-      {pantalla === "escribirPalabra" && (
-        <div>
+     {pantalla === "escribirPalabra" && (
+        <div className="pantalla-escribir">
+          <img src={mascotaNoVer} alt="no mires" className="mascota" />
           <h1>Batalla de Palabras</h1>
           <div className="etiqueta-turno">
             <p>Turno de escribir la palabra: <strong>{jugadorQueEscribe}</strong></p>
@@ -150,34 +158,69 @@ function App() {
           onEnviarIntento={enviarIntento}
           intentosHistorial={intentosHistorial}
           error={error}
+          rondaGanada={rondaGanada}
+          onSiguienteRonda={avanzarRonda}
         />
       )}
-
       {pantalla === "resumen" && resumen && (
-        <div>
+        <div className="pantalla-resumen">
+          <img src={mascotaFin} alt="fin del juego" className="mascota" />
           <h2>Fin de la partida</h2>
-          <p>Ganador: {resumen.ganador || "Empate"}</p>
-          <ul>
-            {resumen.rondas.map((r) => (
-              <li key={r.numero}>
-                Ronda {r.numero} - {r.jugadorQueAdivina}: {r.intentosTotales} intentos, {r.tiempoSegundos}s
-              </li>
-            ))}
-          </ul>
+          <div className="etiqueta-ganador">
+            <p>Ganador: <strong>{resumen.ganador || "Empate"}</strong></p>
+          </div>
+
+          <div className="tabla-contenedor">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ronda</th>
+                  <th>Jugador</th>
+                  <th>Intentos</th>
+                  <th>Tiempo</th>
+                </tr>
+              </thead>
+              <tbody>
+                {resumen.rondas.map((r) => (
+                  <tr key={r.numero}>
+                    <td>{r.numero}</td>
+                    <td>{r.jugadorQueAdivina}</td>
+                    <td>{r.intentosTotales}</td>
+                    <td>{r.tiempoSegundos}s</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <button onClick={reiniciar}>Jugar de nuevo</button>
         </div>
       )}
-
       {pantalla === "historial" && (
-        <div>
+        <div className="pantalla-historial">
           <h2>Historial de partidas</h2>
-          <ul>
-            {historial.map((p) => (
-              <li key={p.id}>
-                {p.jugador1} vs {p.jugador2} - Ganador: {p.ganador || "Empate"}
-              </li>
-            ))}
-          </ul>
+
+          <div className="tabla-contenedor">
+            <table>
+              <thead>
+                <tr>
+                  <th>Jugador 1</th>
+                  <th>Jugador 2</th>
+                  <th>Ganador</th>
+                </tr>
+              </thead>
+              <tbody>
+                {historial.map((p) => (
+                  <tr key={p.id}>
+                    <td>{p.jugador1}</td>
+                    <td>{p.jugador2}</td>
+                    <td>{p.ganador || "Empate"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <button onClick={reiniciar}>Volver</button>
         </div>
       )}

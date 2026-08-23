@@ -1,3 +1,4 @@
+import mascotaFelicidades from "../assets/felicidades.png";
 function Adivinar({
   jugadorQueAdivina,
   largoPalabra,
@@ -6,6 +7,8 @@ function Adivinar({
   onEnviarIntento,
   intentosHistorial,
   error,
+  rondaGanada,
+  onSiguienteRonda,
 }) {
   function agregarLetra(letra) {
     if (intentoInput.length < largoPalabra) {
@@ -16,6 +19,8 @@ function Adivinar({
   function borrarLetra() {
     setIntentoInput(intentoInput.slice(0, -1));
   }
+
+  // opara teclado virtual, definimos las filas de letras
 
   const filaQ = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const filaA = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ"];
@@ -46,44 +51,54 @@ function Adivinar({
           </div>
         ))}
 
-        <div className="fila-intento">
-          {Array.from({ length: largoPalabra }).map((_, i) => (
-            <div key={i} className="celda celda-actual">
-              {intentoInput[i] ? intentoInput[i].toUpperCase() : ""}
-            </div>
-          ))}
-        </div>
+        {!rondaGanada && (
+          <div className="fila-intento">
+            {Array.from({ length: largoPalabra }).map((_, i) => (
+              <div key={i} className="celda celda-actual">
+                {intentoInput[i] ? intentoInput[i].toUpperCase() : ""}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <div className="teclado">
-        <div className="fila-teclado">
-          {filaQ.map((letra) => (
-            <button key={letra} className="tecla" onClick={() => agregarLetra(letra)}>
-              {letra}
-            </button>
-          ))}
+      {rondaGanada ? (
+        <div className="mensaje-exito">
+          <img src={mascotaFelicidades} alt="felicidades" className="mascota" />
+          <p>¡Correcto! Adivinaste la palabra.</p>
+          <button onClick={onSiguienteRonda}>Continuar</button>
         </div>
-        <div className="fila-teclado">
-          {filaA.map((letra) => (
-            <button key={letra} className="tecla" onClick={() => agregarLetra(letra)}>
-              {letra}
+      ) : (
+        <div className="teclado">
+          <div className="fila-teclado">
+            {filaQ.map((letra) => (
+              <button key={letra} className="tecla" onClick={() => agregarLetra(letra)}>
+                {letra}
+              </button>
+            ))}
+          </div>
+          <div className="fila-teclado">
+            {filaA.map((letra) => (
+              <button key={letra} className="tecla" onClick={() => agregarLetra(letra)}>
+                {letra}
+              </button>
+            ))}
+          </div>
+          <div className="fila-teclado">
+            <button className="tecla tecla-especial" onClick={onEnviarIntento}>
+              ✓
             </button>
-          ))}
-        </div>
-        <div className="fila-teclado">
-          <button className="tecla tecla-especial" onClick={onEnviarIntento}>
-            ✓
-          </button>
-          {filaZ.map((letra) => (
-            <button key={letra} className="tecla" onClick={() => agregarLetra(letra)}>
-              {letra}
+            {filaZ.map((letra) => (
+              <button key={letra} className="tecla" onClick={() => agregarLetra(letra)}>
+                {letra}
+              </button>
+            ))}
+            <button className="tecla tecla-especial" onClick={borrarLetra}>
+              ⌫
             </button>
-          ))}
-          <button className="tecla tecla-especial" onClick={borrarLetra}>
-            ⌫
-          </button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

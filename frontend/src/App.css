@@ -179,3 +179,141 @@ button:hover {
 .tecla-especial:hover {
   background-color: #b8547c;
 }
+.mensaje-exito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background-color: #fce4ec;
+  border: 2px solid #d46a94;
+  border-radius: 14px;
+  padding: 20px 28px;
+  margin-top: 12px;
+}
+
+.mensaje-exito p {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #b8547c;
+  margin: 0;
+}
+.input-palabra {
+  width: 320px;
+  padding: 18px 22px;
+  font-size: 1.4rem;
+  border: 2px solid #e0b8c8;
+  border-radius: 12px;
+  outline: none;
+  background-color: white;
+  color: #333;
+  text-align: center;
+}
+
+.input-palabra::placeholder {
+  color: #999;
+}
+.pantalla-escribir {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+h1, h2 {
+  color: #7a3b57;
+  margin: 0;
+}
+.pantalla-resumen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.etiqueta-ganador {
+  background-color: #d46a94;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.etiqueta-ganador p {
+  margin: 0;
+}
+
+.lista-rondas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.fila-ronda {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #e0b8c8;
+  border-radius: 10px;
+  padding: 12px 18px;
+}
+
+.ronda-numero {
+  font-weight: 700;
+  color: #7a3b57;
+}
+
+.ronda-detalle {
+  color: #555;
+}
+.pantalla-historial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.tabla-contenedor {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: white;
+}
+
+thead {
+  background-color: #d46a94;
+}
+
+th {
+  color: white;
+  padding: 12px 16px;
+  font-size: 1rem;
+  text-align: left;
+}
+
+td {
+  padding: 12px 16px;
+  border-top: 1px solid #f0dbe4;
+  color: #444;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fdf3f7;
+}
+.mascota {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 250px;
+  height: auto;
+  z-index: 10;
+}
