@@ -913,5 +913,242 @@
     "ganador": "mary",
     "fechaHora": "2026-08-23T23:39:21.914Z",
     "empate": false
+  },
+  {
+    "id": "e77c6c1c-1bf8-40d2-8f2b-dc24de63c784",
+    "jugador1": "dei",
+    "jugador2": "deii",
+    "rondas": [
+      {
+        "numero": 1,
+        "jugadorQueAdivina": "dei",
+        "jugadorQueEscribe": "deii",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:26:46.870Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 6,
+        "completada": true,
+        "inicioMs": 1787534800611
+      },
+      {
+        "numero": 2,
+        "jugadorQueAdivina": "deii",
+        "jugadorQueEscribe": "dei",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:26:58.933Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 9,
+        "completada": true,
+        "inicioMs": 1787534810357
+      },
+      {
+        "numero": 3,
+        "jugadorQueAdivina": "dei",
+        "jugadorQueEscribe": "deii",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:27:05.969Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 3,
+        "completada": true,
+        "inicioMs": 1787534823160
+      },
+      {
+        "numero": 4,
+        "jugadorQueAdivina": "deii",
+        "jugadorQueEscribe": "dei",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:27:10.673Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 2,
+        "completada": true,
+        "inicioMs": 1787534828824
+      },
+      {
+        "numero": 5,
+        "jugadorQueAdivina": "dei",
+        "jugadorQueEscribe": "deii",
+        "palabraSecreta": "vasa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": false
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:27:15.900Z"
+          },
+          {
+            "texto": "VASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:27:19.385Z"
+          }
+        ],
+        "intentosTotales": 2,
+        "tiempoSegundos": 6,
+        "completada": true,
+        "inicioMs": 1787534833678
+      },
+      {
+        "numero": 6,
+        "jugadorQueAdivina": "deii",
+        "jugadorQueEscribe": "dei",
+        "palabraSecreta": "casa",
+        "intentos": [
+          {
+            "texto": "CASA",
+            "pistas": [
+              {
+                "posicion": 1,
+                "correcta": true
+              },
+              {
+                "posicion": 2,
+                "correcta": true
+              },
+              {
+                "posicion": 3,
+                "correcta": true
+              },
+              {
+                "posicion": 4,
+                "correcta": true
+              }
+            ],
+            "timestamp": "2026-08-24T01:27:26.357Z"
+          }
+        ],
+        "intentosTotales": 1,
+        "tiempoSegundos": 4,
+        "completada": true,
+        "inicioMs": 1787534842399
+      }
+    ],
+    "estado": "finalizada",
+    "ganador": "deii",
+    "fechaHora": "2026-08-24T01:26:32.591Z",
+    "empate": false
   }
 ]
