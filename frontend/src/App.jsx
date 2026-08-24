@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, Fragment} from "react";
 import Inicio from "./componentes/Inicio";
 import "./App.css";
 import Adivinar from "./componentes/Adivinar";
@@ -8,6 +8,18 @@ import mascotaFin from "./assets/fin.png";
 
 
 const API_URL = "http://localhost:5000/api/partidas";
+function calcularTotales(partida, nombreJugador) {
+  return partida.rondas
+    .filter((r) => r.jugadorQueAdivina === nombreJugador)
+    .reduce(
+      (acc, r) => {
+        acc.intentos += r.intentosTotales;
+        acc.tiempo += r.tiempoSegundos;
+        return acc;
+      },
+      { intentos: 0, tiempo: 0 }
+    );
+}
 
 function App() {
 
@@ -214,19 +226,34 @@ function App() {
             <table>
               <thead>
                 <tr>
-                  <th>Jugador 1</th>
-                  <th>Jugador 2</th>
+                  <th>Partida</th>
+                  <th>Jugador</th>
+                  <th>Intentos</th>
+                  <th>Tiempo</th>
                   <th>Ganador</th>
                 </tr>
               </thead>
               <tbody>
-                {historial.map((p) => (
-                  <tr key={p.id}>
-                    <td>{p.jugador1}</td>
-                    <td>{p.jugador2}</td>
-                    <td>{p.ganador || "Empate"}</td>
-                  </tr>
-                ))}
+                {historial.map((p) => {
+                  const totalesJ1 = calcularTotales(p, p.jugador1);
+                  const totalesJ2 = calcularTotales(p, p.jugador2);
+                  return (
+                    <Fragment key={p.id}>
+                      <tr>
+                        <td rowSpan={2}>{p.jugador1} vs {p.jugador2}</td>
+                        <td>{p.jugador1}</td>
+                        <td>{totalesJ1.intentos}</td>
+                        <td>{totalesJ1.tiempo}s</td>
+                        <td rowSpan={2}>{p.ganador || "Empate"}</td>
+                      </tr>
+                      <tr>
+                        <td>{p.jugador2}</td>
+                        <td>{totalesJ2.intentos}</td>
+                        <td>{totalesJ2.tiempo}s</td>
+                      </tr>
+                    </Fragment>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -234,6 +261,7 @@ function App() {
           <button onClick={reiniciar}>Volver</button>
         </div>
       )}
+      
     </div>
   );
 }
