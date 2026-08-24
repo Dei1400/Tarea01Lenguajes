@@ -22,8 +22,8 @@ mantiene un historial con los resultados de todas las partidas jugadas.
 ## Tecnologías
 
 - **Backend:** Node.js + Express
-- **Frontend:** React (pendiente de implementar)
-- **Persistencia:**  archivo JSON en disco (`backend/datos/partidas.json`), sin motor de base de datos aparte
+- **Frontend:** React + Vite
+- **Persistencia:**  archivo JSON  (`backend/datos/partidas.json`), sin motor de base de datos aparte
 
 ## Estructura del proyecto
 
